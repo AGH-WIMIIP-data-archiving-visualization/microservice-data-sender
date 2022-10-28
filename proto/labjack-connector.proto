@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package labjack_connector;
+
+service LabjackConnectorService {
+  rpc GetLabjackData (LabjackConnectorInput) returns (LabjackConnectorResponse) {}
+}
+
+message LabjackConnectorInput {
+  int32 analogInputNo = 1;
+  int32 duration = 2;
+}
+
+
+message ResponseMessage {
+   int32 iteration = 1;
+   double voltageValue = 2;
+  
+}
+
+message LabjackConnectorResponse {
+   repeated ResponseMessage response =1;
+}
