@@ -4,19 +4,16 @@ import {
   LabjackConnectorInput,
   LabjackConnectorResponse,
 } from 'proto/build/labjack-connector';
+import { runLabjackScript } from 'src/python/python-connector';
 
 @Controller()
 export class LabjackConnectorService {
   @GrpcMethod()
-  getLabjackData(
+  async getLabjackData(
     input: LabjackConnectorInput,
-    metadata: any,
-  ): LabjackConnectorResponse {
-    return {
-      response: [
-        { iteration: 1, voltageValue: 2 },
-        { iteration: 2, voltageValue: 2.3 },
-      ],
-    };
+  ): Promise<LabjackConnectorResponse> {
+    const response = await runLabjackScript(input);
+
+    return response;
   }
 }
