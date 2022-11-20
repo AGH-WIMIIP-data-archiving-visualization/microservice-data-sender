@@ -12,7 +12,9 @@ export class LabjackConnectorService {
   async getLabjackData(
     input: LabjackConnectorInput,
   ): Promise<LabjackConnectorResponse> {
+    console.log('start reading');
     const response = await runLabjackScript(input);
+    console.log(response);
 
     return response;
   }
